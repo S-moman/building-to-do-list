@@ -1,33 +1,39 @@
 import { useState } from "react";
 import "./App.css";
+import initialState from "./data";
+import { v4 as uuidv4 } from "uuid";
+import ToDoList from "./ToDoList";
+import ToDo from './ToDo'
 
-function ListItem() {
-  return (
-    <>
-      <li></li>
-      <button>Edit</button> <button>Delete</button>
-    </>
-  );
-}
 
-function ToDoList() {
+function ToDoContainer() {
+  const [todos, setToDos] = useState(initialState);
+  const [todo, setToDo] = useState("");
+
+  function addToDo(todo) {
+    setToDos([
+      ...todos,
+      { id: uuidv4(), title: todo, complete: false, isEditing: false },
+    ]);
+    console.log(todos);
+  }
+
   return (
-    <>
-     <form action="">
-      <input type="text" /><button>Add</button>
-      <div><ListItem /></div>
-     </form>
-    </>
+    <div className="container">
+      <h1>To Do List</h1>
+      <br />
+      <ToDoList addToDo={addToDo} />
+      {todos.map((todo, index) => (
+        <ToDo task={todo} key={index} />
+      ))}
+    </div>
   );
 }
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
-      <header>ToDo List</header>
-      <ToDoList />
+      <ToDoContainer />
     </div>
   );
 }
