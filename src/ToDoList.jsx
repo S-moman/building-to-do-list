@@ -17,7 +17,7 @@ export default function ToDoList({  addToDo }) {
         <input
           onChange={handleChange}
           type="text"
-          placeholder="To Do?"
+          placeholder="What is the task?"
           value={input}
         />
         <button>Add</button>

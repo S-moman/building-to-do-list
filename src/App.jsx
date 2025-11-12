@@ -7,24 +7,32 @@ import ToDo from './ToDo'
 
 
 function ToDoContainer() {
-  const [todos, setToDos] = useState(initialState);
-  const [todo, setToDo] = useState("");
+  const [todos, setToDos] = useState([]);
+  // const [todo, setToDo] = useState();
 
   function addToDo(todo) {
+    if(todo !== ""){
     setToDos([
       ...todos,
       { id: uuidv4(), title: todo, complete: false, isEditing: false },
-    ]);
-    console.log(todos);
+    ])};
   }
+  // console.log(todos);
+
+  function deleteToDo(id) {
+    setToDos(todos.filter(todo => todo.id !== id))
+    console.log(`deleting task... - ${id}`);
+  }
+// console.log(todos)
+
 
   return (
     <div className="container">
       <h1>To Do List</h1>
       <br />
-      <ToDoList addToDo={addToDo} />
-      {todos.map((todo, index) => (
-        <ToDo task={todo} key={index} />
+      <ToDoList addToDo={addToDo}/>
+      {todos.map((todo, id) => (
+        <ToDo task={todo} key={id} deleteToDo={() => deleteToDo(todo.id)} />
       ))}
     </div>
   );
