@@ -24,12 +24,12 @@ function ToDoContainer() {
     console.log(`deleting task... - ${id}`);
   }
 
-  function handleEdit(id) {
-    setToDos(todos.map((todo) => todo.id === id){
-      ...todo, isEditing: !todo.isEditing
-    })
-    console.log("start editing...");
-  }
+  // function handleEdit(id) {
+  //   setToDos(todos.map((todo) => todo.id === id){
+  //     ...todo, isEditing: !todo.isEditing
+  //   })
+  //   console.log("start editing...");
+  // }
 
   return (
     <div className="container">
